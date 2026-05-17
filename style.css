@@ -37,4 +37,35 @@ body { background-color: #f8f9fa; color: #333; line-height: 1.6; }
 
 /* Pied de page */
 .footer { text-align: center; padding: 40px 0; color: #777; font-size: 0.9em; margin-top: 40px; }
+/* Style pour le bouton de téléchargement PDF */
+.btn-pdf {
+    background-color: #f39c12; /* Orange pour ton entreprise */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 80%;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-pdf:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
 
