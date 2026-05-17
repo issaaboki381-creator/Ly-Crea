@@ -1,47 +1,63 @@
-// Liste de tes formations - Prix mis à jour selon ta demande
 const formations = [
     {
-        titre: "Initiation à l'informatique",
-        description: "Découvrez l'ordinateur (PC vs Laptop), les périphériques (souris, clavier, écran) et les logiciels de base pour bien débuter.",
-        prix: "500 FCFA",
-        type: "Formation PDF"
+        titre: "Initiation Informatique",
+        type: "Débutant",
+        prix: "500",
+        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=400",
+        pdf: "Fichiers/initiation.pdf"
     },
     {
-        titre: "Maîtrisez Excel comme un Expert",
-        description: "Apprenez à créer des tableaux de bord automatiques, maîtrisez les formules complexes (RECHERCHEV, SI) et gagnez du temps au bureau.",
-        prix: "1 000 FCFA",
-        type: "Formation PDF"
+        titre: "Maîtriser Microsoft Word",
+        type: "Bureautique",
+        prix: "500",
+        image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=400",
+        pdf: "Fichiers/word.pdf"
     },
     {
-        titre: "Microsoft Word : Rédaction Pro",
-        description: "Rédigez des rapports, des courriers officiels et des mémoires impeccables avec une mise en page parfaite.",
-        prix: "500 FCFA",
-        type: "Guide PDF complet"
+        titre: "Expertise Microsoft Excel",
+        type: "Bureautique",
+        prix: "1000",
+        image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=400",
+        pdf: "Fichiers/excel.pdf"
     }
 ];
 
-const grid = document.getElementById('grid-cours');
+// Fonction pour gérer le téléchargement sécurisé
+function telechargerCours(nomFichier) {
+    const codeSecret = "Zinder2024"; // C'est le code que tu donneras après paiement
+    const codeSaisi = prompt("Veuillez entrer votre code de téléchargement reçu après paiement :");
 
-// Nettoyage de la grille pour éviter les doublons
+    if (codeSaisi === codeSecret) {
+        window.open(nomFichier, '_blank');
+    } else {
+        alert("Code incorrect. Veuillez contacter Issa sur WhatsApp pour obtenir votre code.");
+    }
+}
+
+const grid = document.getElementById('grid-cours');
 grid.innerHTML = "";
 
-// Affichage dynamique des cours
 formations.forEach(cours => {
-    // Création du lien WhatsApp avec le titre du cours automatique
-    const lienWA = `https://wa.me/22799529967?text=Bonjour Issa, je souhaite acheter la formation : ${encodeURIComponent(cours.titre)}`;
-    
+    const lienWA = `https://wa.me/22799529967?text=Bonjour Issa, je viens de payer pour le cours de ${cours.titre}, quel est mon code ?`;
+
     const html = `
         <div class="card">
+            <img src="${cours.image}" alt="${cours.titre}" class="card-img">
             <div class="card-content">
-                <span class="type-badge">📄 ${cours.type}</span>
-                <h3 style="margin: 15px 0; color: #2c3e50;">${cours.titre}</h3>
-                <p style="font-size: 0.9em; color: #666;">${cours.description}</p>
-                <p class="price" style="font-size: 1.5em; font-weight: bold; color: #27ae60; margin: 15px 0;">${cours.prix}</p>
-                <a href="${lienWA}" class="btn-buy" target="_blank" style="display: block; background: #25D366; color: white; padding: 12px; text-decoration: none; border-radius: 6px; font-weight: bold;">
-                    💰 Acheter via WhatsApp
+                <span class="type-badge">${cours.type}</span>
+                <h3 class="card-title">${cours.titre}</h3>
+                <div class="card-info">
+                    <button onclick="telechargerCours('${cours.pdf}')" class="btn-pdf">
+                        <i class="fas fa-download"></i> Télécharger PDF
+                    </button>
+                    <span class="price">${cours.prix} FCFA</span>
+                </div>
+                <a href="${lienWA}" target="_blank" class="btn-inscription">
+                    S'inscrire / Payer
                 </a>
             </div>
         </div>
     `;
     grid.innerHTML += html;
 });
+
