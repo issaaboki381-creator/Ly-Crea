@@ -62,30 +62,25 @@ formations.forEach(cours => {
 });
 // Fonction pour débloquer l'accès à la playlist YouTube de l'IT Academy
 function debloquerFormation() {
-    // 1. On récupère la valeur entrée par l'étudiant
+    // 1. On récupère le code écrit par l'étudiant
     const codeSaisi = document.getElementById('code-eleve').value;
-    
-    // 2. Ton code secret que tu donneras après paiement
-    const codeCorrect = "ZINDER2026"; 
 
-    // 3. Ton identifiant de playlist YouTube que tu m'as envoyé
-    const idPlaylist = "PLNCkzogV4Zh5hwrJ3EGcfbpuWGRHpe1Uo";
+    // 2. Ton code secret de validation
+    const codeCorrect = "ZINDER2026";
 
+    // 3. On vérifie si le code est correct
     if (codeSaisi === codeCorrect) {
-        // Le code est juste ! On masque le panneau de verrouillage
+        // Étape A : On masque le panneau de verrouillage
         document.getElementById('zone-verrou').style.display = 'none';
         
-        // On affiche le conteneur du lecteur vidéo
+        // Étape B : On affiche le bloc qui contient le lecteur
         document.getElementById('zone-playlist').style.display = 'block';
         
-        // On injecte le lien de ta playlist dans l'iframe
-        document.getElementById('playlist-frame').src = "https://www.youtube.com/embed/videoseries?list=" + idPlaylist + "&rel=0&modestbranding=1";
+        // Étape C : On injecte directement le BON format de lien embed YouTube
+        document.getElementById('playlist-frame').src = "https://www.youtube.com/embed/videoseries?list=PLNCkzogV4Zh5hwrJ3EGcfbpuWGRHpe1Uo";
         
-        // Alerte de succès professionnelle
-        alert("Accès accordé ! Bienvenue dans votre formation sur l'IT Academy.");
+        alert("Félicitations ! Votre formation est débloquée.");
     } else {
-        // Si le code entré est faux
-        alert("Code d'accès incorrect. Veuillez contacter Issa Saley pour valider votre inscription.");
+        alert("Code incorrect. Veuillez réessayer.");
     }
 }
-
