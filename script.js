@@ -1,86 +1,23 @@
-const formations = [
-    {
-        titre: "Initiation Informatique",
-        type: "Débutant",
-        prix: "500",
-        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=400",
-        pdf: "Fichiers/initiation.pdf"
-    },
-    {
-        titre: "Maîtriser Microsoft Word",
-        type: "Bureautique",
-        prix: "500",
-        image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=400",
-        pdf: "Fichiers/word.pdf"
-    },
-    {
-        titre: "Expertise Microsoft Excel",
-        type: "Bureautique",
-        prix: "1000",
-        image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=400",
-        pdf: "Fichiers/excel.pdf"
+// On dit au navigateur d'attendre que TOUTE la page soit chargée
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // Ton code de déblocage reste bien au chaud ici
+    window.debloquerFormation = function() {
+        const codeSaisi = document.getElementById('code-eleve').value;
+        const codeCorrect = "ZINDER2026";
+
+        if (codeSaisi === codeCorrect) {
+            document.getElementById('zone-verrou').style.display = 'none';
+            document.getElementById('zone-playlist').style.display = 'block';
+            
+            // Le lien embed parfait
+            document.getElementById('playlist-frame').src = "https://www.youtube.com/embed/videoseries?list=PLNCkzogV4Zh5hwrJ3EGcfbpuWGRHpe1Uo";
+            
+            alert("Félicitations ! Votre formation est débloquée.");
+        } else {
+            alert("Code incorrect. Veuillez réessayer.");
+        }
     }
-];
 
-// Fonction pour gérer le téléchargement sécurisé
-function telechargerCours(nomFichier) {
-    const codeSecret = "Zinder2024"; // C'est le code que tu donneras après paiement
-    const codeSaisi = prompt("Veuillez entrer votre code de téléchargement reçu après paiement :");
-
-    if (codeSaisi === codeSecret) {
-        window.open(nomFichier, '_blank');
-    } else {
-        alert("Code incorrect. Veuillez contacter Issa sur WhatsApp pour obtenir votre code.");
-    }
-}
-
-const grid = document.getElementById('grid-cours');
-grid.innerHTML = "";
-
-formations.forEach(cours => {
-    const lienWA = `https://wa.me/22799529967?text=Bonjour Issa, je viens de payer pour le cours de ${cours.titre}, quel est mon code ?`;
-
-    const html = `
-        <div class="card">
-            <img src="${cours.image}" alt="${cours.titre}" class="card-img">
-            <div class="card-content">
-                <span class="type-badge">${cours.type}</span>
-                <h3 class="card-title">${cours.titre}</h3>
-                <div class="card-info">
-                    <button onclick="telechargerCours('${cours.pdf}')" class="btn-pdf">
-                        <i class="fas fa-download"></i> Télécharger PDF
-                    </button>
-                    <span class="price">${cours.prix} FCFA</span>
-                </div>
-                <a href="${lienWA}" target="_blank" class="btn-inscription">
-                    S'inscrire / Payer
-                </a>
-            </div>
-        </div>
-    `;
-    grid.innerHTML += html;
 });
-// Fonction pour débloquer l'accès à la playlist YouTube de l'IT Academy
-function debloquerFormation() {
-    // 1. On récupère le code écrit par l'étudiant
-    const codeSaisi = document.getElementById('code-eleve').value;
 
-    // 2. Ton code secret de validation
-    const codeCorrect = "ZINDER2026";
-
-    // 3. On vérifie si le code est correct
-    if (codeSaisi === codeCorrect) {
-        // Étape A : On masque le panneau de verrouillage
-        document.getElementById('zone-verrou').style.display = 'none';
-        
-        // Étape B : On affiche le bloc qui contient le lecteur
-        document.getElementById('zone-playlist').style.display = 'block';
-        
-        // Étape C : On injecte directement le BON format de lien embed YouTube
-        document.getElementById('playlist-frame').src = "https://www.youtube.com/embed/videoseries?list=PLNCkzogV4Zh5hwrJ3EGcfbpuWGRHpe1Uo";
-        
-        alert("Félicitations ! Votre formation est débloquée.");
-    } else {
-        alert("Code incorrect. Veuillez réessayer.");
-    }
-}
