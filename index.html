@@ -50,5 +50,36 @@
         <p>&copy; 2026 IT-Academy - Développé par Issa Aboki</p>
     </footer>
     <script src="script.js"></script>
+    <section class="it-academy-cours">
+    <div class="cours-container">
+        <h2>Formation Informatique Complète</h2>
+        <p class="subtitle">Apprenez l'informatique de niveau débutant à votre rythme.</p>
+
+        <div id="zone-verrou" class="card-verrou">
+            <p>Cette formation contient toutes nos vidéos exclusives. Pour débloquer les cours, veuillez saisir votre code d'accès :</p>
+            <div class="form-group">
+                <input type="text" id="code-eleve" placeholder="Entrez votre code d'accès">
+                <button onclick="debloquerFormation()">Débloquer la formation</button>
+            </div>
+            <p class="note-paiement">Pas de code ? Contactez Issa Saley pour l'obtenir après votre paiement Airtel Money.</p>
+        </div>
+
+        <div id="zone-playlist" class="playlist-container" style="display: none;">
+            <h3>Contenu de votre Formation (Toutes les vidéos)</h3>
+            <div class="video-responsive">
+                <iframe 
+                    id="playlist-frame"
+                    src="" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+
 </body>
 </html>

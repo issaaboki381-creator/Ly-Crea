@@ -60,4 +60,32 @@ formations.forEach(cours => {
     `;
     grid.innerHTML += html;
 });
+// Fonction pour débloquer l'accès à la playlist YouTube de l'IT Academy
+function debloquerFormation() {
+    // 1. On récupère la valeur entrée par l'étudiant
+    const codeSaisi = document.getElementById('code-eleve').value;
+    
+    // 2. Ton code secret que tu donneras après paiement
+    const codeCorrect = "ZINDER2026"; 
+
+    // 3. Ton identifiant de playlist YouTube que tu m'as envoyé
+    const idPlaylist = "PLNCkzogV4Zh5hwrJ3EGcfbpuWGRHpe1Uo";
+
+    if (codeSaisi === codeCorrect) {
+        // Le code est juste ! On masque le panneau de verrouillage
+        document.getElementById('zone-verrou').style.display = 'none';
+        
+        // On affiche le conteneur du lecteur vidéo
+        document.getElementById('zone-playlist').style.display = 'block';
+        
+        // On injecte le lien de ta playlist dans l'iframe
+        document.getElementById('playlist-frame').src = "https://www.youtube.com/embed/videoseries?list=" + idPlaylist + "&rel=0&modestbranding=1";
+        
+        // Alerte de succès professionnelle
+        alert("Accès accordé ! Bienvenue dans votre formation sur l'IT Academy.");
+    } else {
+        // Si le code entré est faux
+        alert("Code d'accès incorrect. Veuillez contacter Issa Saley pour valider votre inscription.");
+    }
+}
 
